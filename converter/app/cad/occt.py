@@ -530,7 +530,7 @@ def step_description(derived: DerivedGeometry, source_name: str) -> str:
     parts = [
         "ESTIMATED GEOMETRY - NOT A MODELLED PART.",
         (
-            f"Reconstructed by EhsimCAD from the 2D drawing "
+            f"Reconstructed by SolidInspect from the 2D drawing "
             f"{ascii_only(source_name) or 'supplied'} ({derived.method})."
         ),
         (
@@ -594,8 +594,8 @@ def export_step(shape, out_path: Path, product_name: str, description: str) -> P
 
         header = APIHeaderSection_MakeHeader(writer.Model())
         header.SetName(TCollection_HAsciiString(product_name))
-        header.SetOriginatingSystem(TCollection_HAsciiString("EhsimCAD"))
-        header.SetAuthorValue(1, TCollection_HAsciiString("EhsimCAD"))
+        header.SetOriginatingSystem(TCollection_HAsciiString("SolidInspect"))
+        header.SetAuthorValue(1, TCollection_HAsciiString("SolidInspect"))
         header.SetDescriptionValue(1, TCollection_HAsciiString(description))
 
         out_path.parent.mkdir(parents=True, exist_ok=True)

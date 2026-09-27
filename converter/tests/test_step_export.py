@@ -94,7 +94,7 @@ class TestDescription:
 
         assert "stepped_shaft.dxf" in text
         assert "dxf-revolve" in text
-        assert "EhsimCAD" in text
+        assert "SolidInspect" in text
 
     def test_tells_the_reader_what_to_do_about_it(self):
         # A warning that does not say what to check is decoration.
@@ -149,7 +149,7 @@ class TestWrittenFile:
 
         # The header, which travels with the file wherever it goes.
         assert "ESTIMATED GEOMETRY - NOT A MODELLED PART." in text
-        assert "EhsimCAD" in text
+        assert "SolidInspect" in text
         # And the product name, which shows in the tree of whatever opens it.
         assert "stepped_shaft_ESTIMATED" in text
 

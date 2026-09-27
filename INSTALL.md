@@ -1,4 +1,4 @@
-# Installing EhsimCAD v1 on your own server
+# Installing SolidInspect v1 on your own server
 
 For the team doing the install. It assumes no knowledge of the application, and
 it assumes nobody from the project is in the room -- so everything needed to
@@ -169,7 +169,7 @@ The bundled Postgres and MinIO are a convenience, not a commitment. To use the
 company's instead, change four values in `.env.deploy`:
 
 ```
-DATABASE_URL=postgresql://USER:PASSWORD@db.internal:5432/ehsimcad
+DATABASE_URL=postgresql://USER:PASSWORD@db.internal:5432/solidinspect
 STORAGE_ENDPOINT=https://storage.internal:9000
 STORAGE_PUBLIC_ENDPOINT=            # empty, if that address works everywhere
 STORAGE_ACCESS_KEY_ID=...
@@ -233,7 +233,7 @@ With Docker and a checkout of this repository:
 It builds the three application images, pulls the three it does not build --
 Postgres, MinIO and `mc` -- checks that all six really came out for the
 architecture you asked for, and leaves one file:
-`ehsimcad_v1-images-linux-amd64.tar.gz`, about 1.1 GB. Nothing in it is secret --
+`solidinspect_v1-images-linux-amd64.tar.gz`, about 1.1 GB. Nothing in it is secret --
 the build reads no configuration, which is why one archive serves every
 environment.
 
@@ -245,7 +245,7 @@ image carries its own Linux.
 Carry the file over however files get carried there, then:
 
 ```
-docker load -i ehsimcad_v1-images-linux-amd64.tar.gz
+docker load -i solidinspect_v1-images-linux-amd64.tar.gz
 ```
 
 Six images appear. The four steps under [Start here](#start-here) now run
@@ -375,7 +375,7 @@ Then, in a browser, end to end:
 If it stays `queued`, the worker is not running or cannot see the queue:
 
 ```
-docker compose logs worker        # or: journalctl -u ehsimcad-worker -f
+docker compose logs worker        # or: journalctl -u solidinspect-worker -f
 ```
 
 ---
@@ -436,14 +436,14 @@ paths and the user, then:
 ```
 sudo cp deploy/systemd/*.service /etc/systemd/system/
 sudo systemctl daemon-reload
-sudo systemctl enable --now ehsimcad-web ehsimcad-worker
+sudo systemctl enable --now solidinspect-web solidinspect-worker
 ```
 
 ---
 
 ## Operating it
 
-**Logs.** `docker compose logs -f web worker`, or `journalctl -u ehsimcad-web
+**Logs.** `docker compose logs -f web worker`, or `journalctl -u solidinspect-web
 -f`. Both processes log to stdout.
 
 **Restarting.** Safe at any time. The worker finishes the job it is on before
@@ -630,14 +630,14 @@ sunucuya benzemesi gerekmez:
 
 Üç uygulama imajını derler, derlemediği üçünü -- Postgres, MinIO ve `mc` --
 indirir, altısının da gerçekten istenen mimaride olduğunu doğrular ve tek bir
-dosya bırakır: `ehsimcad_v1-images-linux-amd64.tar.gz`, yaklaşık 1,1 GB. İçinde
+dosya bırakır: `solidinspect_v1-images-linux-amd64.tar.gz`, yaklaşık 1,1 GB. İçinde
 gizli hiçbir şey yoktur — derleme hiçbir ayar okumaz, o yüzden tek arşiv her
 ortama gider.
 
 **Sunucuda:**
 
 ```
-docker load -i ehsimcad_v1-images-linux-amd64.tar.gz
+docker load -i solidinspect_v1-images-linux-amd64.tar.gz
 ```
 
 Altı imaj görünür. Yukarıdaki dört adım bundan sonra olduğu gibi, internetsiz

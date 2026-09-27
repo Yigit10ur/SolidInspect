@@ -1,4 +1,4 @@
-# EhsimCAD v1, on a server of your own.
+# SolidInspect v1, on a server of your own.
 #
 # Everything the application needs is here: the site, the converter, a Postgres
 # and an S3-compatible store. Nothing outside this file has to exist first.
@@ -10,7 +10,7 @@
 #
 # On a machine with no way out to the internet, load the images first:
 #
-#   docker load -i ehsimcad_v1-images-linux-amd64.tar.gz
+#   docker load -i solidinspect_v1-images-linux-amd64.tar.gz
 #
 # and the commands above run unchanged. Every service names the image it wants,
 # so Compose builds only when that image is not already there -- which is what
@@ -29,13 +29,13 @@
 # are trying to replace.
 
 # What the containers, the network and the volumes are called. `docker ps`
-# shows ehsimcad_v1-web-1, and a second version alongside this one does not
+# shows solidinspect_v1-web-1, and a second version alongside this one does not
 # collide with it.
-name: ehsimcad_v1
+name: solidinspect_v1
 
 services:
   web:
-    image: ehsimcad-web:v1
+    image: solidinspect-web:v1
     build:
       context: ./web
     env_file: .env.deploy
@@ -57,7 +57,7 @@ services:
   # take different jobs rather than the same one. One is enough until uploads
   # start queueing behind each other.
   worker:
-    image: ehsimcad-worker:v1
+    image: solidinspect-worker:v1
     build:
       context: ./converter
     env_file: .env.deploy
@@ -79,21 +79,21 @@ services:
     # the database, and the moment a port is open the password below stops
     # being a formality. To look inside it during an install, use the client
     # that is already in the image:
-    #   docker compose exec postgres psql -U ehsimcad ehsimcad
+    #   docker compose exec postgres psql -U solidinspect solidinspect
     environment:
-      POSTGRES_USER: ehsimcad
-      POSTGRES_DB: ehsimcad
+      POSTGRES_USER: solidinspect
+      POSTGRES_DB: solidinspect
       # Override it in the environment if you would rather, but then change
       # DATABASE_URL in `.env.deploy` to match -- they are the same password
       # written twice, and Compose cannot write one from the other.
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ehsimcad}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-solidinspect}
     volumes:
       - postgres-data:/var/lib/postgresql/data
     healthcheck:
       # `web` and `worker` wait for this. Postgres starts, stops and starts
       # again while it initialises the data directory on first run, so a
       # container that is merely up is not yet a database that answers.
-      test: ["CMD-SHELL", "pg_isready -U ehsimcad -d ehsimcad"]
+      test: ["CMD-SHELL", "pg_isready -U solidinspect -d solidinspect"]
       interval: 5s
       timeout: 5s
       retries: 20
@@ -104,8 +104,8 @@ services:
     image: minio/minio:RELEASE.2025-09-07T16-13-09Z
     command: ["server", "/data", "--console-address", ":9001"]
     environment:
-      MINIO_ROOT_USER: ${STORAGE_ACCESS_KEY_ID:-ehsimcad}
-      MINIO_ROOT_PASSWORD: ${STORAGE_SECRET_ACCESS_KEY:-ehsimcad-storage}
+      MINIO_ROOT_USER: ${STORAGE_ACCESS_KEY_ID:-solidinspect}
+      MINIO_ROOT_PASSWORD: ${STORAGE_SECRET_ACCESS_KEY:-solidinspect-storage}
       # The browser sends OPTIONS before it PUTs a file, and a bucket that
       # refuses it fails every upload while the server looks perfectly healthy.
       # Presigned URLs are what authorise these requests -- an origin is not a
@@ -134,8 +134,8 @@ services:
     depends_on:
       - minio
     environment:
-      MINIO_ROOT_USER: ${STORAGE_ACCESS_KEY_ID:-ehsimcad}
-      MINIO_ROOT_PASSWORD: ${STORAGE_SECRET_ACCESS_KEY:-ehsimcad-storage}
+      MINIO_ROOT_USER: ${STORAGE_ACCESS_KEY_ID:-solidinspect}
+      MINIO_ROOT_PASSWORD: ${STORAGE_SECRET_ACCESS_KEY:-solidinspect-storage}
       BUCKET: ${STORAGE_BUCKET:-cad-models}
     entrypoint: ["/bin/sh", "-c"]
     command:
@@ -156,7 +156,7 @@ services:
 
   # Bring the schema up: `docker compose run --rm migrate`.
   migrate:
-    image: ehsimcad-tools:v1
+    image: solidinspect-tools:v1
     build:
       context: ./web
       # Not the image that serves the site: that one carries only what the
@@ -174,7 +174,7 @@ services:
   preflight:
     # The same image as `migrate`, named the same, so it is built once and
     # travels once.
-    image: ehsimcad-tools:v1
+    image: solidinspect-tools:v1
     build:
       context: ./web
       target: tools

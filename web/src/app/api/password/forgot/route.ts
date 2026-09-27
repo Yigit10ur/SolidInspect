@@ -36,7 +36,7 @@ export async function POST(request: Request) {
 
       await sendMail({
         to: address,
-        subject: 'Reset your EhsimCAD password',
+        subject: 'Reset your SolidInspect password',
         text:
           `Someone asked to reset the password for this address.\n\n${link}\n\n` +
           `The link works once and expires in ${LIFETIME_MINUTES} minutes.\n\n` +

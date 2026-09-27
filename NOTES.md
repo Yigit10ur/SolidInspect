@@ -17,7 +17,7 @@ described leaves a correction to this paragraph free to be its own commit.)
 
 ## Where it is
 
-Live at <https://ehsimcad.vercel.app>. Web on Vercel
+Live at <https://solidinspect.vercel.app>. Web on Vercel
 (`fra1`), Postgres and object storage on Supabase (Frankfurt), conversion on
 GitHub Actions. Nothing runs between uploads, so nothing is billed.
 
@@ -634,8 +634,8 @@ borrowed from a flat face, and two dials to rotate away from either.
 commercial SDK. The honest framing: every one of those systems exports STEP,
 which is the industry exchange format and is fully supported.
 
-**Renaming reaches further than the two names.** The repository is `ehsimcad`
-and the site is <https://ehsimcad.vercel.app>; the old domain 308s to it, which
+**Renaming reaches further than the two names.** The repository is `SolidInspect`
+and the site is <https://solidinspect.vercel.app>; the old domain 308s to it, which
 keeps every link already handed out alive. Three things had to move with the
 names and none of them are in this repository: `GITHUB_REPOSITORY` in Vercel,
 which the dispatch that starts a conversion is built from -- a renamed

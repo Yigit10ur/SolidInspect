@@ -2,31 +2,31 @@
 #
 #   sudo cp deploy/systemd/*.service /etc/systemd/system/
 #   sudo systemctl daemon-reload
-#   sudo systemctl enable --now ehsimcad-web ehsimcad-worker
+#   sudo systemctl enable --now solidinspect-web solidinspect-worker
 #
 # Adjust User, WorkingDirectory and the two paths below to match where the
 # application was put and which account owns it.
 
 [Unit]
-Description=EhsimCAD web application
+Description=SolidInspect web application
 After=network-online.target
 Wants=network-online.target
 
 [Service]
 Type=simple
-User=ehsimcad
-WorkingDirectory=/opt/ehsimcad/web
+User=solidinspect
+WorkingDirectory=/opt/solidinspect/web
 
 # Every value is read at request time, so this file is the only thing that has
 # to change between environments.
-EnvironmentFile=/opt/ehsimcad/.env.deploy
+EnvironmentFile=/opt/solidinspect/.env.deploy
 Environment=NODE_ENV=production
 Environment=PORT=3000
 Environment=HOSTNAME=127.0.0.1
 
 # The standalone server produced by `BUILD_STANDALONE=1 npm run build`. Its
 # static files and `public` have to sit beside it -- see INSTALL.md.
-ExecStart=/usr/bin/node /opt/ehsimcad/web/.next/standalone/server.js
+ExecStart=/usr/bin/node /opt/solidinspect/web/.next/standalone/server.js
 
 Restart=always
 RestartSec=5
@@ -37,7 +37,7 @@ NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=strict
 ProtectHome=true
-ReadWritePaths=/opt/ehsimcad/web/.next/cache
+ReadWritePaths=/opt/solidinspect/web/.next/cache
 
 StandardOutput=journal
 StandardError=journal

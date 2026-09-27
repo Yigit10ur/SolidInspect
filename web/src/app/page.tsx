@@ -173,7 +173,7 @@ export default async function Home({
               </g>
             </svg>
             <span className="text-sm font-semibold tracking-tight text-slate-900">
-              EhsimCAD
+              SolidInspect
             </span>
           </Link>
 
