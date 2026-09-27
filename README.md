@@ -1,13 +1,13 @@
-# EhsimCAD
+# SolidInspect
 
 A web-based CAD model management platform.
 
-[![CI](https://github.com/Yigit10ur/ehsimcad/actions/workflows/ci.yml/badge.svg)](https://github.com/Yigit10ur/ehsimcad/actions/workflows/ci.yml)
+[![CI](https://github.com/Yigit10ur/SolidInspect/actions/workflows/ci.yml/badge.svg)](https://github.com/Yigit10ur/SolidInspect/actions/workflows/ci.yml)
 
 **English** · [Türkçe](#türkçe)
 
-**[Live](https://ehsimcad.vercel.app)** · the viewer alone, with no account:
-**[/sample](https://ehsimcad.vercel.app/sample)**
+**[Live](https://solidinspect.vercel.app)** · the viewer alone, with no account:
+**[/sample](https://solidinspect.vercel.app/sample)**
 
 Installing it on your own server: **[INSTALL.md](INSTALL.md)**.
 
@@ -141,10 +141,10 @@ project for production: [DEPLOY.md](DEPLOY.md)
 
 ## Türkçe
 
-[English](#ehsimcad) · **Türkçe**
+[English](#solidinspect) · **Türkçe**
 
-**[Canlı](https://ehsimcad.vercel.app)** · hesapsız, yalnızca viewer:
-**[/sample](https://ehsimcad.vercel.app/sample)**
+**[Canlı](https://solidinspect.vercel.app)** · hesapsız, yalnızca viewer:
+**[/sample](https://solidinspect.vercel.app/sample)**
 
 Kendi sunucunuza kurmak için: **[INSTALL.md](INSTALL.md)** (Türkçe özet en altta).
 
