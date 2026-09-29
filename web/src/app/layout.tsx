@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "EhsimCAD",
+  title: "SolidInspect",
   // Shown by search engines and in the preview when a link is pasted into a
   // chat, so it says what the thing is rather than what built it.
   description: "Upload, inspect and share CAD models in the browser.",

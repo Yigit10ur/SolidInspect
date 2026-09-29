@@ -13,7 +13,7 @@
 #
 # It leaves one file. Carry it over, and on the server:
 #
-#   docker load -i ehsimcad_v1-images-linux-amd64.tar.gz
+#   docker load -i solidinspect_v1-images-linux-amd64.tar.gz
 #
 # after which the ordinary instructions in INSTALL.md run unchanged, offline.
 #
@@ -32,7 +32,7 @@ OUT_DIR="$(cd "$OUT_DIR" && pwd)"
 
 cd "$(dirname "$0")/.."
 
-ARCHIVE="$OUT_DIR/ehsimcad_v1-images-${PLATFORM//\//-}.tar.gz"
+ARCHIVE="$OUT_DIR/solidinspect_v1-images-${PLATFORM//\//-}.tar.gz"
 
 # The architecture the server runs, not the one this machine runs. Building for
 # the wrong one is the failure this script exists to make hard: the images load

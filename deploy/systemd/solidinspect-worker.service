@@ -5,21 +5,21 @@
 # but one is enough until uploads start waiting behind each other.
 
 [Unit]
-Description=EhsimCAD conversion worker
+Description=SolidInspect conversion worker
 After=network-online.target
 Wants=network-online.target
 
 [Service]
 Type=simple
-User=ehsimcad
-WorkingDirectory=/opt/ehsimcad/converter
+User=solidinspect
+WorkingDirectory=/opt/solidinspect/converter
 
-EnvironmentFile=/opt/ehsimcad/.env.deploy
+EnvironmentFile=/opt/solidinspect/.env.deploy
 
 # The worker refuses to start if OpenCascade is not importable, rather than
 # accepting jobs and failing every one of them. If this unit will not start,
 # read the journal before anything else.
-ExecStart=/opt/ehsimcad/converter/.venv/bin/python -m app.worker
+ExecStart=/opt/solidinspect/converter/.venv/bin/python -m app.worker
 
 # It finishes the job it is on before exiting, so give it room to.
 Restart=always
