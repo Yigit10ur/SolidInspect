@@ -229,5 +229,11 @@ so what reaches `main` has already been linted, typechecked, tested and built.
 The converter has nothing to deploy: a run checks the repository out and
 installs what it needs, so `main` is what converts your files.
 
+**A free Supabase project is paused after a week without activity.** A paused
+project refuses every connection with `tenant/user ... not found`, and the site
+cannot sign anyone in. The `keepalive` workflow runs one query every three days
+to prevent it. If it happens anyway, **Restore project** in the Supabase
+dashboard brings it back with its data; nothing else needs redeploying.
+
 **Secrets live in Vercel and in the repository's Actions secrets**, never in
 the repository itself. `web/.env.local` is for your machine and is gitignored.
